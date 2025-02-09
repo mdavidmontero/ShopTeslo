@@ -48,7 +48,6 @@ export const createUpdateProduct = async (formData: FormData) => {
         .map((tag) => tag.trim().toLowerCase());
 
       if (id) {
-        // Actualizar
         product = await prisma.product.update({
           where: { id },
           data: {
@@ -62,7 +61,6 @@ export const createUpdateProduct = async (formData: FormData) => {
           },
         });
       } else {
-        // Crear
         product = await prisma.product.create({
           data: {
             ...rest,
@@ -76,10 +74,7 @@ export const createUpdateProduct = async (formData: FormData) => {
         });
       }
 
-      // Proceso de carga y guardado de imagenes
-      // Recorrer las imagenes y guardarlas
       if (formData.getAll("images")) {
-        // [https://url.jpg, https://url.jpg]
         const images = await uploadImages(formData.getAll("images") as File[]);
         if (!images) {
           throw new Error("No se pudo cargar las imágenes, rollingback");
@@ -97,8 +92,6 @@ export const createUpdateProduct = async (formData: FormData) => {
         product,
       };
     });
-
-    // Todo: RevalidatePaths
     revalidatePath("/admin/products");
     revalidatePath(`/admin/product/${product.slug}`);
     revalidatePath(`/products/${product.slug}`);
@@ -106,8 +99,12 @@ export const createUpdateProduct = async (formData: FormData) => {
     return {
       ok: true,
       product: prismaTx.product,
+      message: id
+        ? "Producto actualizado Correctamente"
+        : "Producto creado Correctamente",
     };
   } catch (error) {
+    console.log(error);
     return {
       ok: false,
       message: "Revisar los logs, no se pudo actualizar/crear",
