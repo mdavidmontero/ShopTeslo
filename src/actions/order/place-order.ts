@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 import prisma from "@/lib/prisma";
 
@@ -59,7 +60,6 @@ export const placeOrder = async (
 
   // Crear la transacción de base de datos
   try {
-
     const prismaTx = await prisma.$transaction(async (tx) => {
       // 1. Actualizar el stock de los productos
       const updatedProductsPromises = products.map((product) => {
@@ -136,14 +136,11 @@ export const placeOrder = async (
       };
     });
 
-
     return {
       ok: true,
       order: prismaTx.order,
       prismaTx: prismaTx,
-    }
-
-
+    };
   } catch (error: any) {
     return {
       ok: false,

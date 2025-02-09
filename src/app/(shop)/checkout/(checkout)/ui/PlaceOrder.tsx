@@ -19,7 +19,7 @@ export const PlaceOrder = () => {
 
   const { itemsInCart, subTotal, tax, total } = useMemo(() => {
     return useCartStore.getState().getSummaryInformation();
-  }, [cart]); // Solo se recalcula cuando `cart` cambia
+  }, []); // Solo se recalcula cuando `cart` cambia
 
   const clearCart = useCartStore((state) => state.clearCart);
 

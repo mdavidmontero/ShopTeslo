@@ -43,7 +43,7 @@ export const getPaginatedProductsWithImages = async ({
         gender: gender,
       },
     });
-    
+
     const totalPages = Math.ceil(totalCount / take);
 
     return {
@@ -55,6 +55,7 @@ export const getPaginatedProductsWithImages = async ({
       })),
     };
   } catch (error) {
+    console.log(error);
     throw new Error("No se pudo cargar los productos");
   }
 };

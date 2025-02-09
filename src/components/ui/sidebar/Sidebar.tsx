@@ -9,13 +9,14 @@ import {
   IoLogOutOutline,
   IoPeopleOutline,
   IoPersonOutline,
-  IoSearchOutline,
   IoShirtOutline,
   IoTicketOutline,
 } from "react-icons/io5";
 
 import { useUIStore } from "@/store";
 import { logout } from "@/actions";
+import Image from "next/image";
+import { titleFont } from "@/config/fonts";
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
@@ -54,13 +55,28 @@ export const Sidebar = () => {
         />
 
         <div className="relative mt-14">
+          {session?.user.image && (
+            <Image
+              alt="user image"
+              src={session?.user.image}
+              width={150}
+              height={150}
+              className="rounded-full mx-auto"
+            />
+          )}
+          <p className={`text-center my-2 font-bold ${titleFont.className}`}>
+            {session?.user.name}
+          </p>
+        </div>
+
+        {/* <div className="relative mt-14">
           <IoSearchOutline size={20} className="absolute top-2 left-2" />
           <input
             type="text"
             placeholder="Buscar"
             className="w-full bg-gray-50 rounded pl-10 py-1 pr-10 border-b-2 text-xl border-gray-200 focus:outline-none focus:border-blue-500"
           />
-        </div>
+        </div> */}
 
         {isAuthenticated && (
           <>
@@ -70,7 +86,7 @@ export const Sidebar = () => {
               className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoPersonOutline size={30} />
-              <span className="ml-3 text-lg">Perfil</span>
+              <span className="ml-3 text-base">Perfil</span>
             </Link>
 
             <Link
@@ -79,7 +95,7 @@ export const Sidebar = () => {
               className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoTicketOutline size={30} />
-              <span className="ml-3 text-lg">Ordenes</span>
+              <span className="ml-3 text-base">Ordenes</span>
             </Link>
           </>
         )}
@@ -90,7 +106,7 @@ export const Sidebar = () => {
             onClick={() => logout()}
           >
             <IoLogOutOutline size={30} />
-            <span className="ml-3 text-lg">Salir</span>
+            <span className="ml-3 text-base">Salir</span>
           </button>
         )}
 
@@ -101,14 +117,13 @@ export const Sidebar = () => {
             onClick={() => closeMenu()}
           >
             <IoLogInOutline size={30} />
-            <span className="ml-3 text-lg">Ingresar</span>
+            <span className="ml-3 text-base">Ingresar</span>
           </Link>
         )}
 
         {isAdmin && (
           <>
-            {/* Line Separator */}
-            <div className="w-full h-px bg-gray-200 my-10" />
+            <div className="w-full h-px bg-gray-200 my-5" />
 
             <Link
               href="/admin/products"
@@ -116,7 +131,7 @@ export const Sidebar = () => {
               className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoShirtOutline size={30} />
-              <span className="ml-3 text-lg">Productos</span>
+              <span className="ml-3 text-base">Productos</span>
             </Link>
 
             <Link
@@ -125,7 +140,7 @@ export const Sidebar = () => {
               className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoTicketOutline size={30} />
-              <span className="ml-3 text-lg">Ordenes</span>
+              <span className="ml-3 text-base">Ordenes</span>
             </Link>
 
             <Link
@@ -134,7 +149,7 @@ export const Sidebar = () => {
               className="flex items-center mt-5 p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoPeopleOutline size={30} />
-              <span className="ml-3 text-xl">Usuarios</span>
+              <span className="ml-3 text-base">Usuarios</span>
             </Link>
           </>
         )}

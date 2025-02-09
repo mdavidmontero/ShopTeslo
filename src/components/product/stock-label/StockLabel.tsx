@@ -14,6 +14,7 @@ export const StockLabel = ({ slug }: Props) => {
 
   useEffect(() => {
     getStock();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getStock = async () => {

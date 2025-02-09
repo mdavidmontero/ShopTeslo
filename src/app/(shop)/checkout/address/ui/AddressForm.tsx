@@ -36,6 +36,7 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
     reset,
   } = useForm<FormInputs>({
     defaultValues: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...(userStoredAddress as any),
       rememberAddress: false,
     },
@@ -52,6 +53,7 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
     if (address.firstName) {
       reset(address);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = async (data: FormInputs) => {

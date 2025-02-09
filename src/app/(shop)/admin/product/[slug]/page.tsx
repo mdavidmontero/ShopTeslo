@@ -3,13 +3,10 @@ import { Title } from "@/components";
 import { redirect } from "next/navigation";
 import { ProductForm } from "./ui/ProductForm";
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
+type Params = Promise<{ slug: string }>;
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage(props: { params: Params }) {
+  const params = await props.params;
   const { slug } = params;
 
   const [product, categories] = await Promise.all([

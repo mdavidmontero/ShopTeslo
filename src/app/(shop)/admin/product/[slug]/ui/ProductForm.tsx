@@ -90,8 +90,6 @@ export const ProductForm = ({ product, categories }: Props) => {
       }
     }
 
-    console.log(images);
-
     const {
       ok,
       product: updatedProduct,
