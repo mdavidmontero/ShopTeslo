@@ -1,18 +1,23 @@
 "use client";
+
+import Image from "next/image";
+
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode, Pagination } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/free-mode";
-import "swiper/css/thumbs";
 import "swiper/css/pagination";
+
 import "./slideshow.css";
-import { Autoplay, FreeMode, Pagination } from "swiper/modules";
-import Image from "next/image";
+
 interface Props {
   images: string[];
   title: string;
   className?: string;
 }
-export const ProductMobileSlideShow = ({ images, title, className }: Props) => {
+
+export const ProductMobileSlideshow = ({ images, title, className }: Props) => {
   return (
     <div className={className}>
       <Swiper
@@ -34,7 +39,7 @@ export const ProductMobileSlideShow = ({ images, title, className }: Props) => {
               height={500}
               src={`/products/${image}`}
               alt={title}
-              className="rounded-lg object-fill"
+              className="object-fill"
             />
           </SwiperSlide>
         ))}
