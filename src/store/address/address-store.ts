@@ -11,6 +11,8 @@ interface State {
     city: string;
     country: string;
     phone: string;
+    lat: number;
+    lng: number;
   };
 
   // Methods
@@ -29,6 +31,9 @@ export const useAddressStore = create<State>()(
         city: "",
         country: "",
         phone: "",
+
+        lat: -73.260975,
+        lng: 10.451197,
       },
 
       setAddress: (address) => {

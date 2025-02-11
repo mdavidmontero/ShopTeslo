@@ -7,4 +7,6 @@ export interface Address {
   city: string;
   country: string;
   phone: string;
+  lat: number;
+  lng: number;
 }

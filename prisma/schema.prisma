@@ -103,6 +103,8 @@ model UserAddress {
   postalCode String
   phone      String
   city       String
+  lat        Float
+  lng        Float
 
   // Relaciones
   country   Country @relation(fields: [countryId], references: [id])
@@ -158,6 +160,8 @@ model OrderAddress {
   postalCode String
   city       String
   phone      String
+  lat        Float
+  lng        Float
 
   // Relaciones
   country   Country @relation(fields: [countryId], references: [id])
